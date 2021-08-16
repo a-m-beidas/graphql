@@ -13,6 +13,6 @@ import java.util.List;
 public class AllUsersDataFetcher implements DataFetcher<List<User>> {
     @Override
     public List<User> get(DataFetchingEnvironment dataFetchingEnvironment) {
-        return new LinkedList<User>(Arrays.asList(new User("123", "Test2", "Test2"), new User("124", "Test2", "Test2")));
+        return new LinkedList<User>(Arrays.asList(new User("123", "First User", "Password1"), new User("124", "Second User", "Password2")));
     }
 }
