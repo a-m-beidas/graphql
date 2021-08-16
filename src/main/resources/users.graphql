@@ -1,0 +1,14 @@
+schema {
+    query: Query
+}
+
+type Query {
+    allUsers: [User]
+    users(id: String): User
+}
+
+type User {
+    id: String
+    name: String
+    password: String
+}

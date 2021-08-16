@@ -1,0 +1,15 @@
+spring:
+  port: 8081
+  datasource:
+    url: jdbc:mysql://localhost:3307/graphql?useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: none
+      order_inserts: true
+      order_updatest: true
+      jdbc:
+        batch_size: 4
+    generate-ddl: true
+    show-sql: true
