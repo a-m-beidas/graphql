@@ -16,8 +16,8 @@ public class GraphQLController {
     @Autowired
     GraphQLService graphQLService;
 
-    @PostMapping(path = "/users")
-    public ResponseEntity<Object> getAllUsers(@RequestBody String query) {
+    @PostMapping(path = "/books")
+    public ResponseEntity<Object> getBooks(@RequestBody String query) {
         ExecutionResult result = graphQLService.getGraphQL().execute(query);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

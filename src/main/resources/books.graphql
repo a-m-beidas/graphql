@@ -12,6 +12,6 @@ type Book {
     id: String
     title: String
     genre: String
-    authors: [String]
+    authors: String
     year: Int
 }
