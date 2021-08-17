@@ -1,0 +1,17 @@
+schema {
+    query: Query
+}
+
+type Query {
+    bestSellers: [Book]
+    recent: [Book]
+    classic: [Book]
+}
+
+type Book {
+    id: String
+    title: String
+    genre: String
+    authors: [String]
+    year: Int
+}

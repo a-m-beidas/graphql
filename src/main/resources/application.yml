@@ -1,5 +1,6 @@
-spring:
+server:
   port: 8081
+spring:
   datasource:
     url: jdbc:mysql://localhost:3307/graphql?useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root

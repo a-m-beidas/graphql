@@ -1,68 +1,74 @@
 package org.example.service;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import org.example.model.User;
-import org.example.service.fetcher.AllUsersDataFetcher;
-import org.example.service.fetcher.UserDataFetcher;
+import org.example.model.Book;
+import org.example.repository.BookRepository;
+import org.example.service.fetcher.BestSellersDataFetcher;
+import org.example.service.fetcher.ClassicBookDataFetcher;
+import org.example.service.fetcher.RecentBooksDataFetcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-import org.example.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
-import java.util.stream.Stream;
 
 @Service
 public class GraphQLService {
 
-    @Autowired
-    UserRepository userRepository;
 
-    @Value("classpath:users.graphql")
+    @Value("classpath:books.graphql")
     Resource resource;
+
+    @Value("classpath:books.json")
+    Resource json;
 
     private GraphQL graphQL;
     @Autowired
-    private AllUsersDataFetcher allUsersDataFetcher;
+    private BestSellersDataFetcher bestSellersDataFetcher;
     @Autowired
-    private UserDataFetcher userDataFetcher;
+    private RecentBooksDataFetcher recentBooksDataFetcher;
+    @Autowired
+    private ClassicBookDataFetcher classicBookDataFetcher;
+    @Autowired
+    private BookRepository bookRepository;
 
     // load schema at application start up
+
+    private void database() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode tree = mapper.readTree(json.getFile());
+        Book[] books = mapper.convertValue(tree, Book[].class);
+        for (Book book: books) {
+            bookRepository.save(book);
+        }
+    }
+
     @PostConstruct
     private void loadSchema() throws IOException {
-
-        // get the schema
+        database();
         File schemaFile = resource.getFile();
-        // parse schema
         TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(schemaFile);
         RuntimeWiring wiring = buildRuntimeWiring();
         GraphQLSchema schema = new SchemaGenerator().makeExecutableSchema(typeRegistry, wiring);
         graphQL = GraphQL.newGraphQL(schema).build();
     }
 
-    private void loadDataIntoHSQL() {
-
-        Stream.of(
-                new User("123", "Book of Clouds", "Kindle Edition"),
-                new User("124", "Cloud Arch & Engineering", "Orielly"),
-                new User("125", "Java 9 Programming", "Orielly")
-        ).forEach(user -> {
-            userRepository.save(user);
-        });
-    }
 
     private RuntimeWiring buildRuntimeWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type("Query", typeWiring -> typeWiring
-                        .dataFetcher("allUsers", allUsersDataFetcher)
-                        .dataFetcher("users", userDataFetcher))
+                        .dataFetcher("bestSellers", bestSellersDataFetcher)
+                        .dataFetcher("recent", recentBooksDataFetcher)
+                        .dataFetcher("classic", classicBookDataFetcher))
                 .build();
     }
 
