@@ -7,11 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-enum Category {
-    BestSeller,
-    Recent,
-    Classic
-}
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Book {
