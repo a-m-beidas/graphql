@@ -54,7 +54,7 @@ public class GraphQLService {
 
     @PostConstruct
     private void loadSchema() throws IOException {
-        database();
+//        database();
         File schemaFile = resource.getFile();
         TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(schemaFile);
         RuntimeWiring wiring = buildRuntimeWiring();
