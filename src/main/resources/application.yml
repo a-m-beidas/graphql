@@ -1,5 +1,7 @@
 server:
   port: 8081
+jwt:
+  secret: ASD_DASDB_ASDF_WFE_FWE_JRGN_FVWEVFJB
 spring:
   datasource:
     url: jdbc:mysql://localhost:3307/graphql?useLegacyDatetimeCode=false&serverTimezone=UTC
