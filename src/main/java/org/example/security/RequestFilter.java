@@ -42,7 +42,7 @@ public class RequestFilter extends OncePerRequestFilter {
         //Validate and add
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             if (tokenUtility.validateToken(token)) {
-                User userDetails = new User("User", "Password", Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN")));
+                User userDetails = new User("User", "Password", Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
