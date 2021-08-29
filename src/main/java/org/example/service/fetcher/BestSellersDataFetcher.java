@@ -6,6 +6,7 @@ import graphql.schema.DataFetchingEnvironment;
 import org.example.model.Book;
 import org.example.model.Category;
 import org.example.repository.BookRepository;
+import org.example.security.GraphQLQueryValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,17 +24,14 @@ import java.util.Map;
 public class BestSellersDataFetcher implements DataFetcher<List<Book>> {
 
     @Autowired
+    GraphQLQueryValidation graphQLQueryValidation;
+
+    @Autowired
     private BookRepository bookRepository;
 
     @Override
-    @PostAuthorize("hasAnyRole('USER')")
     public List<Book> get(DataFetchingEnvironment dataFetchingEnvironment) {
-        Map<String, List<Field>> selections = dataFetchingEnvironment.getSelectionSet().get();
-        if (selections.containsKey("id")) {
-            SecurityContext ctx = SecurityContextHolder.getContext();
-            Authentication auth = new UsernamePasswordAuthenticationToken(ctx.getAuthentication().getPrincipal(), ctx.getAuthentication().getCredentials(), new ArrayList<GrantedAuthority>());
-            ctx.setAuthentication(auth);
-        }
+        graphQLQueryValidation.validateBookFetcher(dataFetchingEnvironment);
         return bookRepository.findByGenre(Category.BestSeller);
     }
 }

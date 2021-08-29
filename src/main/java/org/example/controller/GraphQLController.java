@@ -3,7 +3,6 @@ package org.example.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import graphql.ExecutionResult;
-import org.example.security.APISecurityValidator;
 import org.example.service.GraphQLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +16,6 @@ public class GraphQLController {
 
     @Autowired
     GraphQLService graphQLService;
-
-    @Autowired
-    APISecurityValidator securityValidator;
 
     @PostMapping(path = "/books")
     public ResponseEntity<Object> getBooks(@RequestBody String query) throws JsonProcessingException {
