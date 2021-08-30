@@ -19,9 +19,4 @@ public class GraphQLSpring {
     @Autowired
     BookRepository bookRepository;
 
-    @Bean
-    void test() {
-        List<Book> books = bookRepository.findByGenre(Category.Classic);
-        System.out.println(books);
-    }
 }
