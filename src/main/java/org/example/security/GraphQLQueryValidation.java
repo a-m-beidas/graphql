@@ -2,6 +2,7 @@ package org.example.security;
 
 import graphql.language.Field;
 import graphql.schema.DataFetchingEnvironment;
+import graphql.schema.SelectedField;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,7 +20,7 @@ public class GraphQLQueryValidation {
 
     @PostAuthorize("hasAnyRole('USER')")
     public void validateBookFetcher(DataFetchingEnvironment dataFetchingEnvironment) {
-        Map<String, List<Field>> selections = dataFetchingEnvironment.getSelectionSet().get();
+        Map<String, List<SelectedField>> selections = dataFetchingEnvironment.getSelectionSet().getFieldsGroupedByResultKey();
         if (selections.containsKey("id")) {
             SecurityContext ctx = SecurityContextHolder.getContext();
             Authentication auth = new UsernamePasswordAuthenticationToken(ctx.getAuthentication().getPrincipal(), ctx.getAuthentication().getCredentials(), new ArrayList<GrantedAuthority>());
