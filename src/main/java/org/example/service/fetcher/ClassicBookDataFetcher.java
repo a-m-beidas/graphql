@@ -22,7 +22,7 @@ public class ClassicBookDataFetcher implements DataFetcher<List<Book>> {
 
     @Override
     public List<Book> get(DataFetchingEnvironment dataFetchingEnvironment) {
-        graphQLQueryValidation.validateBookFetcher(dataFetchingEnvironment);
+//        graphQLQueryValidation.validateBookFetcher(dataFetchingEnvironment);
         return bookRepository.findByGenre(Category.Classic);
     }
 }

@@ -21,7 +21,7 @@ public class RecentBooksDataFetcher implements DataFetcher<List<Book>> {
     BookRepository bookRepository;
     @Override
     public List<Book> get(DataFetchingEnvironment dataFetchingEnvironment) {
-        graphQLQueryValidation.validateBookFetcher(dataFetchingEnvironment);
+//        graphQLQueryValidation.validateBookFetcher(dataFetchingEnvironment);
         return bookRepository.findByGenre(Category.Recent);
     }
 }
