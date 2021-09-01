@@ -24,8 +24,7 @@ public class TokenUtility implements Serializable {
     @Autowired
     private SecretKey secretKey;
 
-    @Value("${jwt.secret}")
-    private String secret;
+    public String secret = "ASD_DASDB_ASDF_WFE_FWE_JRGN_FVWEVFJB";
 
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
@@ -90,6 +89,6 @@ public class TokenUtility implements Serializable {
 
     @Bean
     public SecretKey getSecretKeyForSigning() {
-        return Keys.secretKeyFor(SignatureAlgorithm.HS512);
+        return Keys.hmacShaKeyFor(secret.getBytes());
     }
 }
