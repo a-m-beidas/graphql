@@ -25,6 +25,7 @@ public class BooksQueryResolver implements GraphQLQueryResolver {
     RecentBooksDataFetcher recentBooksDataFetcher;
 
     List<Book> bestSellers(DataFetchingEnvironment dataFetchingEnvironment) {
+        System.out.println("123123.");
         return bestSellersDataFetcher.get(dataFetchingEnvironment);
     }
 
