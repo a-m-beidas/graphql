@@ -15,7 +15,12 @@ type Book {
     id: String @auth(role: "ADMIN")
     title: String @auth(role: "USER")
     genre: String
-    author: String
+    author: Author
     link: String
     year: Int
+}
+
+type Author {
+    id: String
+    name: String
 }

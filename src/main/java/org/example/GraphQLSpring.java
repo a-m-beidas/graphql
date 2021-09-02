@@ -19,4 +19,5 @@ public class GraphQLSpring {
     @Autowired
     BookRepository bookRepository;
 
+
 }

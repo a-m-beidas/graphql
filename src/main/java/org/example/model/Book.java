@@ -2,10 +2,7 @@ package org.example.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,7 +15,8 @@ public class Book {
 
     private Category genre;
 
-    private String author;
+    @OneToOne
+    private Author author;
 
     private String link;
 
@@ -48,7 +46,7 @@ public class Book {
         return genre;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 

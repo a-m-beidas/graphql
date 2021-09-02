@@ -33,7 +33,7 @@ public class AuthDirective implements SchemaDirectiveWiring {
                     SecurityContext ctx = SecurityContextHolder.getContext();
                     Authentication auth = new UsernamePasswordAuthenticationToken(ctx.getAuthentication().getPrincipal(), ctx.getAuthentication().getCredentials(), new ArrayList<GrantedAuthority>());
                     ctx.setAuthentication(auth);
-                    throw new IllegalArgumentException("Error");
+                    return null;
                 }
                 return originalDataFetcher.get(environment);
             }
