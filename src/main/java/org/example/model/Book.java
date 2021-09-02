@@ -15,7 +15,9 @@ public class Book {
 
     private Category genre;
 
-    @OneToOne
+    private int authorId;
+
+    @Transient
     private Author author;
 
     private String link;
@@ -48,6 +50,10 @@ public class Book {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public int getAuthorId() {
+        return authorId;
     }
 
     public String getLink() {

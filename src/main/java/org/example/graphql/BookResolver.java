@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.CompletableFuture;
 
 @Component
-public class BookResolver implements GraphQLResolver<Author> {
+public class BookResolver implements GraphQLResolver<Book> {
 
     @Autowired
     DataLoader dataLoader;
 
-    public CompletableFuture<Author> author(Author author, DataFetchingEnvironment dfe) {
+    public CompletableFuture<Author> author(Book book, DataFetchingEnvironment dfe) {
         org.dataloader.DataLoader dataLoader = dfe.getDataLoader("author");
         //  Post post = dfe.getSource();
-        return dataLoader.load(author.getId());
+        return dataLoader.load(book.getAuthor());
     }
 }

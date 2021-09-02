@@ -22,5 +22,6 @@ type Book {
 
 type Author {
     id: String
-    name: String
+    firstName: String
+    lastName: String
 }
