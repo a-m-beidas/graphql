@@ -31,10 +31,7 @@ public class BestSellersDataFetcher implements DataFetcher<List<Book>> {
 
     @Override
     public List<Book> get(DataFetchingEnvironment dataFetchingEnvironment) {
-//        graphQLQueryValidation.validateBookFetcher(dataFetchingEnvironment);
-        System.out.println("223123.");
         List<Book> result = bookRepository.findByGenre(Category.BestSeller);
-        System.out.println("323123.");
         return result;
     }
 }

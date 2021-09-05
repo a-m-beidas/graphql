@@ -11,9 +11,13 @@ public class Author {
     @GeneratedValue
     private int id;
 
-    private final String firstName;
+    private String firstName;
 
-    private final String lastName;
+    private String lastName;
+
+    public Author() {
+
+    }
 
     public Author(String name) {
         String[] nameArr = name.split(" ");

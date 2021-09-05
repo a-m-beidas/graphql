@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Book {
+
     @Id
     @GeneratedValue
     private int id;
@@ -15,15 +16,13 @@ public class Book {
 
     private Category genre;
 
-    private int authorId;
-
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
     private String link;
 
     private int year;
-
 
     @Transient
     private static int counter = 0;
@@ -50,10 +49,6 @@ public class Book {
 
     public Author getAuthor() {
         return author;
-    }
-
-    public int getAuthorId() {
-        return authorId;
     }
 
     public String getLink() {

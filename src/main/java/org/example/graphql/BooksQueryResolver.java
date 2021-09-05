@@ -42,7 +42,6 @@ public class BooksQueryResolver implements GraphQLQueryResolver {
     Resource json;
 
     List<Book> bestSellers(DataFetchingEnvironment dataFetchingEnvironment) {
-        System.out.println("123123.");
         return bestSellersDataFetcher.get(dataFetchingEnvironment);
     }
 
@@ -54,7 +53,7 @@ public class BooksQueryResolver implements GraphQLQueryResolver {
         return recentBooksDataFetcher.get(dataFetchingEnvironment);
     }
 
-    @PostConstruct
+//    @PostConstruct
     private void database() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode tree = mapper.readTree(json.getFile());
@@ -62,7 +61,6 @@ public class BooksQueryResolver implements GraphQLQueryResolver {
         for (Book book: books) {
             authorRepository.save(book.getAuthor());
             bookRepository.save(book);
-
         }
     }
 }

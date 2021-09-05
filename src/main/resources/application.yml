@@ -7,7 +7,7 @@ spring:
     url: jdbc:postgresql://localhost/graphql
     username: postgres
     password: root
-    data: classpath:schema/**
+    data: classpath:schema/schema.sql
     initialization-mode: always
   jpa:
     hibernate:
