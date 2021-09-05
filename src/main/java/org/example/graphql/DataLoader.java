@@ -2,7 +2,6 @@ package org.example.graphql;
 
 import org.dataloader.BatchLoader;
 import org.example.model.Author;
-import org.example.model.Book;
 import org.example.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

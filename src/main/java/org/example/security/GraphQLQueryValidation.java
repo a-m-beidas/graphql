@@ -1,6 +1,5 @@
 package org.example.security;
 
-import graphql.language.Field;
 import graphql.schema.DataFetchingEnvironment;
 import graphql.schema.SelectedField;
 import org.springframework.security.access.prepost.PostAuthorize;

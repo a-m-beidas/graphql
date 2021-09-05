@@ -1,26 +1,5 @@
 package org.example.graphql;
 
-import graphql.kickstart.execution.context.DefaultGraphQLContext;
-import graphql.kickstart.execution.context.GraphQLContext;
-import graphql.kickstart.servlet.context.DefaultGraphQLServletContext;
-import graphql.kickstart.servlet.context.DefaultGraphQLServletContextBuilder;
-import graphql.kickstart.servlet.context.DefaultGraphQLWebSocketContext;
-import graphql.kickstart.servlet.context.GraphQLServletContextBuilder;
-import org.dataloader.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
-import javax.websocket.server.HandshakeRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-
-
 //@Configuration
 public class DataLoadersConfig {
 
