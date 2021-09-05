@@ -34,22 +34,11 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
---
--- Name: author; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.author (
-    id integer NOT NULL,
-    first_name character varying(255),
-    last_name character varying(255)
-);
-
-
-ALTER TABLE public.author OWNER TO postgres;
 
 --
 -- Name: book; Type: TABLE; Schema: public; Owner: postgres
 --
+DROP TABLE If EXISTS public.book;
 
 CREATE TABLE public.book (
     id integer NOT NULL,
@@ -63,9 +52,27 @@ CREATE TABLE public.book (
 
 ALTER TABLE public.book OWNER TO postgres;
 
+
+--
+-- Name: author; Type: TABLE; Schema: public; Owner: postgres
+--
+DROP TABLE If EXISTS public.author;
+
+CREATE TABLE public.author (
+    id integer NOT NULL,
+    first_name character varying(255),
+    last_name character varying(255)
+);
+
+
+ALTER TABLE public.author OWNER TO postgres;
+
 --
 -- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
 --
+
+DROP SEQUENCE IF EXISTS public.hibernate_sequence;
+
 
 CREATE SEQUENCE public.hibernate_sequence
     START WITH 1
