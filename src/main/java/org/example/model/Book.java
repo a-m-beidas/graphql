@@ -16,9 +16,12 @@ public class Book {
 
     private Category genre;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
+
+    @Column(name = "author_id", updatable = false, insertable = false)
+    private int authorId;
 
     private String link;
 
@@ -49,6 +52,10 @@ public class Book {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public int getAuthorId() {
+        return authorId;
     }
 
     public String getLink() {
