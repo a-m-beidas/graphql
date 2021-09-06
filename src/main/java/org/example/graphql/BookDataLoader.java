@@ -11,9 +11,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 @Component
-public class DataLoader implements BatchLoader<String, Author> {
+public class BookDataLoader implements BatchLoader<String, Author> {
 
-    @Autowired
+    @Autowired(required = true)
     AuthorRepository authorRepository;
 
     @Override
