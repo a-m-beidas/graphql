@@ -1,5 +1,6 @@
 package org.example.service.fetcher;
 
+import graphql.execution.DataFetcherExceptionHandlerResult;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import org.example.model.Book;
@@ -10,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Component
-public class ClassicBookDataFetcher implements DataFetcher<List<Book>> {
+public class ClassicBookDataFetcher implements DataFetcher<CompletableFuture<List<Book>>> {
 
     @Autowired
     GraphQLQueryValidation graphQLQueryValidation;
@@ -21,8 +23,7 @@ public class ClassicBookDataFetcher implements DataFetcher<List<Book>> {
     private BookRepository bookRepository;
 
     @Override
-    public List<Book> get(DataFetchingEnvironment dataFetchingEnvironment) {
-//        graphQLQueryValidation.validateBookFetcher(dataFetchingEnvironment);
-        return bookRepository.findByGenre(Category.Classic);
+    public CompletableFuture<List<Book>> get(DataFetchingEnvironment dataFetchingEnvironment) {
+        return CompletableFuture.supplyAsync(() -> bookRepository.findByGenre(Category.Classic));
     }
 }

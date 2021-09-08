@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Component
 public class BooksQueryResolver implements GraphQLQueryResolver {
@@ -39,15 +40,15 @@ public class BooksQueryResolver implements GraphQLQueryResolver {
     @Value("classpath:books.json")
     Resource json;
 
-    List<Book> bestSellers(DataFetchingEnvironment dataFetchingEnvironment) {
+    CompletableFuture<List<Book>> bestSellers(DataFetchingEnvironment dataFetchingEnvironment) {
         return bestSellersDataFetcher.get(dataFetchingEnvironment);
     }
 
-    List<Book> recent(DataFetchingEnvironment dataFetchingEnvironment) {
+    CompletableFuture<List<Book>> recent(DataFetchingEnvironment dataFetchingEnvironment) {
         return classicBookDataFetcher.get(dataFetchingEnvironment);
     }
 
-    List<Book> classic(DataFetchingEnvironment dataFetchingEnvironment) {
+    CompletableFuture<List<Book>> classic(DataFetchingEnvironment dataFetchingEnvironment) {
         return recentBooksDataFetcher.get(dataFetchingEnvironment);
     }
 
