@@ -37,6 +37,7 @@ public class BooksQueryResolver implements GraphQLQueryResolver {
     @Autowired
     AuthorRepository authorRepository;
 
+
     @Value("classpath:books.json")
     Resource json;
 

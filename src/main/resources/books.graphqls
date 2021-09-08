@@ -1,19 +1,25 @@
-directive @auth(role: String) on FIELD_DEFINITION
+directive @auth(fields: String) on FIELD_DEFINITION
 
+input AuthField {
+    key: String
+    value: String
+}
 
 schema {
     query: Query
 }
 
-type Query {
-    bestSellers: [Book]
+type Query
+    {
+    bestSellers: [Book] @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
     recent: [Book]
     classic: [Book]
 }
 
-type Book {
-    id: String @auth(role: "ADMIN")
-    title: String @auth(role: "USER")
+type Book
+{
+    id: String
+    title: String
     genre: String
     author: Author
     link: String

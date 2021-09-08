@@ -9,6 +9,7 @@ public class DirectiveConfig {
 
     @Bean
     SchemaDirective uppercaseDirective(){
+
         return new SchemaDirective("auth", new AuthDirective());
     }
 }
