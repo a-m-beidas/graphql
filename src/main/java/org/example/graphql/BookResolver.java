@@ -9,10 +9,13 @@ import org.example.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.CompletableFuture;
 
 @Component
 public class BookResolver implements GraphQLResolver<Book> {
+
+    @PostConstruct
 
     @Autowired
     BookDataLoader bookDataLoader;

@@ -1,4 +1,4 @@
-directive @auth(fields: String) on FIELD_DEFINITION
+directive @auth(fields: String) on FIELD_DEFINITION | OBJECT
 
 input AuthField {
     key: String
@@ -9,14 +9,13 @@ schema {
     query: Query
 }
 
-type Query
-    {
+type Query {
     bestSellers: [Book] @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
-    recent: [Book]
-    classic: [Book]
+    recent: [Book] @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
+    classic: [Book] @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
 }
 
-type Book
+type Book @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
 {
     id: String
     title: String
