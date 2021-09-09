@@ -17,9 +17,9 @@ schema {
 }
 
 type Query {
-    bestSellers: [Book] @auth
-    recent: [Book] @auth
-    classic: [Book] @auth
+    bestSellers: [Book] <b>@auth</b>
+    recent: [Book] <b>@auth</b>
+    classic: [Book] <b>@auth</b>
 }
 
 type Book <b>@auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")</b>
