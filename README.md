@@ -1,3 +1,3 @@
 # graphql
 
-Resolvers + Authentication using directive wiring
+Resolvers + Directive wiring
