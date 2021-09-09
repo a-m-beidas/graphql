@@ -22,7 +22,7 @@ type Query {
     classic: [Book] @auth
 }
 
-type Book @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
+type Book <b>@auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")</b>
 {
     id: String
     title: String
