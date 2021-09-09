@@ -8,8 +8,12 @@ import org.springframework.context.annotation.Configuration;
 public class DirectiveConfig {
 
     @Bean
-    SchemaDirective uppercaseDirective(){
+    SchemaDirective hasAuthDirective() {
+        return null;
+    }
 
+    @Bean
+    SchemaDirective authDirective() {
         return new SchemaDirective("auth", new AuthDirective());
     }
 }

@@ -15,8 +15,6 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class BookResolver implements GraphQLResolver<Book> {
 
-    @PostConstruct
-
     @Autowired
     BookDataLoader bookDataLoader;
 

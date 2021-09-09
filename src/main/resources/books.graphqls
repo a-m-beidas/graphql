@@ -10,9 +10,9 @@ schema {
 }
 
 type Query {
-    bestSellers: [Book] @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
-    recent: [Book] @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
-    classic: [Book] @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
+    bestSellers: [Book] @auth
+    recent: [Book] @auth
+    classic: [Book] @auth
 }
 
 type Book @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
