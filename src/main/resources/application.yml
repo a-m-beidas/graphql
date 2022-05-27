@@ -1,0 +1,24 @@
+server:
+  port: 8081
+jwt:
+  secret: ASD_DASDB_ASDF_WFE_FWE_JRGN_FVWEVFJB
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/graphql
+    username: postgres
+    password: root
+    data: classpath:schema/schema.sql
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: none
+#      ddl-auto: create-drop
+      order_inserts: true
+      order_updatest: true
+      jdbc:
+        batch_size: 4
+    properties:
+      hibernate:
+        default_schema: public
+    generate-ddl: true
+    show-sql: true

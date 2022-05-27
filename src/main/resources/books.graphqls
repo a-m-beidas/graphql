@@ -1,0 +1,32 @@
+directive @auth(fields: String) on FIELD_DEFINITION | OBJECT
+
+input AuthField {
+    key: String
+    value: String
+}
+
+schema {
+    query: Query
+}
+
+type Query {
+    bestSellers: [Book] @auth
+    recent: [Book] @auth
+    classic: [Book] @auth
+}
+
+type Book @auth(fields: "{'id': 'ADMIN', 'title': 'USER'}")
+{
+    id: String
+    title: String
+    genre: String
+    author: Author
+    link: String
+    year: Int
+}
+
+type Author {
+    id: String
+    firstName: String
+    lastName: String
+}
